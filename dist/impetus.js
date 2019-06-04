@@ -36,6 +36,8 @@
         var boundY = _ref.boundY;
         var _ref$bounce = _ref.bounce;
         var bounce = _ref$bounce === undefined ? true : _ref$bounce;
+        var _ref$preventScroll = _ref.preventScroll;
+        var preventScroll = _ref$preventScroll === undefined ? false : _ref$preventScroll;
 
         _classCallCheck(this, Impetus);
 
@@ -229,6 +231,9 @@
          * @param  {Object} ev Normalized event
          */
         function onDown(ev) {
+            if (preventScroll) {
+                ev.preventDefault();
+            }
             var event = normalizeEvent(ev);
             if (!pointerActive && !paused) {
                 pointerActive = true;
@@ -267,7 +272,7 @@
         function onUp(ev) {
             var event = normalizeEvent(ev);
 
-            if (pointerActive && event.id === pointerId) {
+            if (pointerActive) {
                 stopTracking();
             }
         }
