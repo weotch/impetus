@@ -248,7 +248,7 @@ export default class Impetus {
         function onUp(ev) {
             var event = normalizeEvent(ev);
 
-            if (pointerActive && event.id === pointerId) {
+            if (pointerActive) {
                 stopTracking();
             }
         }
