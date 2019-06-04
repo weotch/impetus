@@ -18,7 +18,8 @@ export default class Impetus {
         initialValues,
         boundX,
         boundY,
-        bounce = true
+        bounce = true,
+        preventScroll = false,
     }) {
         var boundXmin, boundXmax, boundYmin, boundYmax, pointerLastX, pointerLastY, pointerCurrentX, pointerCurrentY, pointerId, decVelX, decVelY;
         var targetX = 0;
@@ -210,6 +211,9 @@ export default class Impetus {
          * @param  {Object} ev Normalized event
          */
         function onDown(ev) {
+            if (preventScroll) {
+                ev.preventDefault();
+            }
             var event = normalizeEvent(ev);
             if (!pointerActive && !paused) {
                 pointerActive = true;
